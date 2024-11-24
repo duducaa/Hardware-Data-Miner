@@ -1,0 +1,53 @@
+services:
+  kabum-scraping:
+    container_name: kabum-scraping
+    build:
+      context: ./web-scraping/kabum
+      dockerfile: Dockerfile
+    ports:
+      - 5031:5000
+    volumes:
+      - "./web-scraping/kabum/api:/api"
+    networks:
+      smartshopper-network:
+        ipv4_address: 172.168.100.2
+    stdin_open: true
+    tty: true
+
+  amazon-scraping:
+    container_name: amazon-scraping
+    build:
+      context: ./web-scraping/amazon
+      dockerfile: Dockerfile
+    ports:
+      - 5032:5000
+    volumes:
+      - "./web-scraping/amazon/api:/api"
+    networks:
+      smartshopper-network:
+        ipv4_address: 172.168.100.3
+    stdin_open: true
+    tty: true
+
+  mercado-livre-scraping:
+    container_name: mercado-livre-scraping
+    build:
+      context: ./web-scraping/mercado-livre
+      dockerfile: Dockerfile
+    ports:
+      - 5033:5000
+    volumes:
+      - "./web-scraping/mercado-livre/api:/api"
+    networks:
+      smartshopper-network:
+        ipv4_address: 172.168.100.3
+    stdin_open: true
+    tty: true
+
+networks:
+  smartshopper-network:
+    name: smartshopper-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.168.100.0/27
