@@ -9,7 +9,7 @@ services:
     volumes:
       - "./web-scraping/kabum/api:/api"
     networks:
-      smartshopper-network:
+      hardware-network:
         ipv4_address: 172.168.100.2
     stdin_open: true
     tty: true
@@ -24,7 +24,7 @@ services:
     volumes:
       - "./web-scraping/amazon/api:/api"
     networks:
-      smartshopper-network:
+      hardware-network:
         ipv4_address: 172.168.100.3
     stdin_open: true
     tty: true
@@ -39,14 +39,14 @@ services:
     volumes:
       - "./web-scraping/mercado-livre/api:/api"
     networks:
-      smartshopper-network:
+      hardware-network:
         ipv4_address: 172.168.100.3
     stdin_open: true
     tty: true
 
 networks:
-  smartshopper-network:
-    name: smartshopper-network
+  hardware-network:
+    name: hardware-network
     driver: bridge
     ipam:
       config:
